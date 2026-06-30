@@ -1,0 +1,233 @@
+@import "tailwindcss";
+@import "@devmahmoudi/ui/styles.css";
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("./fonts/Vazir.eot");
+  src: url("./fonts/Vazir.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/Vazir.woff2") format("woff2"),
+    url("./fonts/Vazir.woff") format("woff"),
+    url("./fonts/Vazir.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --background: #f4f8ff;
+  --foreground: #16334f;
+  --card: rgba(255, 255, 255, 0.92);
+  --panel: rgba(255, 255, 255, 0.82);
+  --muted: #e4eefb;
+  --muted-foreground: #5b728c;
+  --border: #d5e3f5;
+  --input: #d9e7f8;
+  --ring: #2e7de9;
+  --primary: #2e7de9;
+  --primary-foreground: #f8fbff;
+  --secondary: #edf5ff;
+  --secondary-foreground: #205baf;
+  --accent: #d9ebff;
+  --accent-foreground: #184c94;
+  --destructive: #d86464;
+  --destructive-foreground: #fff6f6;
+  --shadow-color: 46 125 233;
+  --hero-pop: #b8dbff;
+  --font-sans: "Vazirmatn", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-panel: var(--panel);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --font-sans: var(--font-sans);
+  --radius-4xl: 2rem;
+  --shadow-soft: 0 24px 60px rgba(var(--shadow-color), 0.18);
+  --shadow-card: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #10161f;
+  --foreground: #ecf2fb;
+  --card: rgba(18, 26, 38, 0.94);
+  --panel: rgba(22, 31, 45, 0.9);
+  --muted: #192334;
+  --muted-foreground: #97a9bf;
+  --border: #2a3952;
+  --input: #22324a;
+  --ring: #2e7de9;
+  --primary: #2e7de9;
+  --primary-foreground: #f8fbff;
+  --secondary: #18283f;
+  --secondary-foreground: #d8e7ff;
+  --accent: #203451;
+  --accent-foreground: #dbe8ff;
+  --destructive: #ee8d8d;
+  --destructive-foreground: #2b0d0d;
+  --shadow-color: 46 125 233;
+  --hero-pop: #223a65;
+}
+
+.surface-card input, .surface-card button {
+  padding: 20px !important;
+}
+
+.container-app {
+  margin-inline: auto;
+  width: calc(100% - 1rem);
+  max-width: 1760px;
+}
+
+.surface-card {
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--card) 98%, white 2%), var(--card)),
+    linear-gradient(135deg, color-mix(in srgb, var(--secondary) 18%, transparent), transparent 62%);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(18px);
+}
+
+.auth-sidebar-glow {
+  background:
+    radial-gradient(circle at top, color-mix(in srgb, var(--accent) 34%, transparent), transparent 34%),
+    linear-gradient(180deg, color-mix(in srgb, var(--secondary) 62%, transparent), transparent 66%);
+}
+
+.portal-shell {
+  min-height: 100vh;
+  position: relative;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(24px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.soft-app-bg {
+  background-image:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--hero-pop) 48%, transparent), transparent 22%),
+    radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 42%, transparent), transparent 24%);
+}
+
+.portal-top-glow {
+  position: fixed;
+  top: -185px;
+  left: 50%;
+  z-index: 0;
+  width: min(72vw, 1120px);
+  height: 470px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--primary) 36%, transparent), transparent 64%),
+    radial-gradient(circle, color-mix(in srgb, var(--primary) 18%, transparent), transparent 74%);
+  filter: blur(22px);
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.float-in {
+  animation: float-in 760ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.fade-up {
+  animation: fade-up 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.pulse-glow {
+  animation: pulse-glow 4.2s ease-in-out infinite;
+}
+
+.hover-lift {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 54px rgba(var(--shadow-color), 0.16);
+}
+
+.nav-active-glow {
+  box-shadow:
+    0 18px 38px rgba(var(--shadow-color), 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--shadow-color), 0.08);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(var(--shadow-color), 0.02);
+  }
+}
+
+@media (min-width: 768px) {
+  .container-app {
+    width: calc(100% - 1.5rem);
+  }
+
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1.32fr) minmax(340px, 0.68fr);
+    gap: 1.25rem;
+  }
+}
