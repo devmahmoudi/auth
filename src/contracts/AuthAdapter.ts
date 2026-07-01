@@ -1,0 +1,8 @@
+export interface AuthAdapter {
+  signIn(credentials: any): Promise<any>;
+  signUp(data: any): Promise<any>;
+  signOut(): Promise<void>;
+  resetPassword(email: string): Promise<void>;
+  getSession(): Promise<any | null>;
+  onAuthStateChange(callback: (session: any | null) => void): () => void;
+}

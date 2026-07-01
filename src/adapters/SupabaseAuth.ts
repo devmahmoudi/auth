@@ -1,0 +1,57 @@
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import type { AuthAdapter } from "../contracts/AuthAdapter";
+
+export default class SupabaseAuth implements AuthAdapter {
+    private client: SupabaseClient;
+
+    constructor(url: string, anonKey: string) {
+        this.client = createClient(url, anonKey);
+    }
+
+    async signIn(credentials: { email: string; password: string }): Promise<any> {
+        const { data, error } = await this.client.auth.signInWithPassword({
+            email: credentials.email,
+            password: credentials.password,
+        });
+
+        if (error) throw error;
+        return data;
+    }
+
+    async signUp(data: { email: string; password: string; options?: any }): Promise<any> {
+        const { data: result, error } = await this.client.auth.signUp({
+            email: data.email,
+            password: data.password,
+            options: data.options,
+        });
+
+        if (error) throw error;
+        return result;
+    }
+
+    async signOut(): Promise<void> {
+        const { error } = await this.client.auth.signOut();
+        if (error) throw error;
+    }
+
+    async resetPassword(email: string): Promise<void> {
+        const { error } = await this.client.auth.resetPasswordForEmail(email);
+        if (error) throw error;
+    }
+
+    async getSession(): Promise<any | null> {
+        const { data: { session }, error } = await this.client.auth.getSession();
+        if (error) throw error;
+        return session;
+    }
+
+    onAuthStateChange(callback: (session: any | null) => void): () => void {
+        const { data: { subscription } } = this.client.auth.onAuthStateChange((_event, session) => {
+            callback(session);
+        });
+
+        return () => {
+            subscription.unsubscribe();
+        };
+    }
+}
