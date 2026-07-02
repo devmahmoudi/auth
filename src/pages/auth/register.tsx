@@ -40,6 +40,6 @@ export default function Register() {
   };
 
   return (
-    <RegisterForm onSubmit={handleOnSubmit} error={error} pending={submitting} />
+    <RegisterForm onSubmit={handleOnSubmit} error={error} pending={submitting} loginLink="/auth/login"/>
   );
 }

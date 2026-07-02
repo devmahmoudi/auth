@@ -2,6 +2,7 @@ import { Input, Spinner } from "@devmahmoudi/ui";
 import { Label } from "@devmahmoudi/ui";
 import { Button } from "@devmahmoudi/ui";
 import { useState } from "react";
+import { Link } from "react-router";
 
 type RegisterFormProps = {
   title?: string;
@@ -9,6 +10,7 @@ type RegisterFormProps = {
   onSubmit?: (data: { email: string; password: string; confirmPassword: string }) => void;
   error?: string;
   pending?: boolean;
+  loginLink?: string;
 };
 
 interface RegisterData {
@@ -22,7 +24,8 @@ export default function RegisterForm({
   subtitle,
   onSubmit,
   error,
-  pending
+  pending,
+  loginLink,
 }: RegisterFormProps) {
   const [data, setData] = useState<RegisterData>({
     email: "",
@@ -95,6 +98,17 @@ export default function RegisterForm({
           {pending ? <Spinner /> : "ثبت نام"}
         </Button>
       </form>
+
+      {loginLink && (
+        <div className="text-center text-sm">
+          <Link
+            to={loginLink}
+            className="text-blue-600 hover:text-blue-800 hover:underline"
+          >
+            قبلاً ثبت نام کرده‌اید؟ وارد شوید
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
