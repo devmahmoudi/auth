@@ -1,5 +1,6 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import type { AuthAdapter } from "../contracts/AuthAdapter";
+import type { SignInResult } from "../types/SignInResult";
 
 export default class SupabaseAuth implements AuthAdapter {
     private client: SupabaseClient;
@@ -8,14 +9,23 @@ export default class SupabaseAuth implements AuthAdapter {
         this.client = createClient(url, anonKey);
     }
 
-    async signIn(credentials: { email: string; password: string }): Promise<any> {
+    async signIn(credentials: { email: string; password: string }): Promise<SignInResult> {
         const { data, error } = await this.client.auth.signInWithPassword({
             email: credentials.email,
             password: credentials.password,
         });
 
-        if (error) throw error;
-        return data;
+        if (error) {
+            return {
+                succeed: false,
+                error: error.message
+            }
+        }
+
+        return {
+            succeed: true,
+            data
+        };
     }
 
     async signUp(data: { email: string; password: string; options?: any }): Promise<any> {

@@ -1,10 +1,11 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
 import type { AuthAdapter } from "../contracts/AuthAdapter";
+import type { SignInResult } from "../types/SignInResult";
 
 type AuthContextType = {
   session: any | null;
   isLoading: boolean;
-  signIn: (credentials: any) => Promise<any>;
+  signIn: (credentials: any) => Promise<SignInResult>;
   signUp: (data: any) => Promise<any>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;

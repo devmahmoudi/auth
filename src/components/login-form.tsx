@@ -7,6 +7,7 @@ type LoginFormProps = {
   title?: string;
   subtitle?: string;
   onSubmit?: (credentials: { email: string; password: string }) => void;
+  error?: string;
 };
 
 interface Credentials {
@@ -18,6 +19,7 @@ export default function LoginForm({
   title,
   subtitle,
   onSubmit,
+  error,
 }: LoginFormProps) {
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
@@ -38,6 +40,12 @@ export default function LoginForm({
       </div>
 
       <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+        {error && (
+          <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">
+            {error}
+          </div>
+        )}
+
         <div>
           <Label>ایمیل</Label>
           <Input
