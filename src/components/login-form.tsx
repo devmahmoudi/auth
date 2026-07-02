@@ -1,4 +1,4 @@
-import { Input } from "@devmahmoudi/ui";
+import { Input, Spinner } from "@devmahmoudi/ui";
 import { Label } from "@devmahmoudi/ui";
 import { Button } from "@devmahmoudi/ui";
 import { useState } from "react";
@@ -8,6 +8,7 @@ type LoginFormProps = {
   subtitle?: string;
   onSubmit?: (credentials: { email: string; password: string }) => void;
   error?: string;
+  pending?: boolean;
 };
 
 interface Credentials {
@@ -20,6 +21,7 @@ export default function LoginForm({
   subtitle,
   onSubmit,
   error,
+  pending
 }: LoginFormProps) {
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
@@ -76,7 +78,7 @@ export default function LoginForm({
             })
           }
         >
-          ورود
+          {pending ? <Spinner/> : "ورود"}
         </Button>
       </form>
     </div>
