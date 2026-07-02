@@ -2,6 +2,7 @@ import { Input, Spinner } from "@devmahmoudi/ui";
 import { Label } from "@devmahmoudi/ui";
 import { Button } from "@devmahmoudi/ui";
 import { useState } from "react";
+import { Link } from "react-router";
 
 type LoginFormProps = {
   title?: string;
@@ -9,6 +10,7 @@ type LoginFormProps = {
   onSubmit?: (credentials: { email: string; password: string }) => void;
   error?: string;
   pending?: boolean;
+  registerLink?: string;
 };
 
 interface Credentials {
@@ -21,7 +23,8 @@ export default function LoginForm({
   subtitle,
   onSubmit,
   error,
-  pending
+  pending,
+  registerLink,
 }: LoginFormProps) {
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
@@ -81,6 +84,17 @@ export default function LoginForm({
           {pending ? <Spinner/> : "ورود"}
         </Button>
       </form>
+
+      {registerLink && (
+        <div className="text-center text-sm">
+          <Link
+            to={registerLink}
+            className="text-blue-600 hover:text-blue-800 hover:underline"
+          >
+            حساب کاربری ندارید؟ ثبت نام کنید
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

@@ -23,6 +23,6 @@ export default function Login() {
   };
 
   return (
-    <LoginForm onSubmit={handleOnSubmit} error={error} pending={submitting} />
+    <LoginForm onSubmit={handleOnSubmit} error={error} pending={submitting} registerLink={"/auth/register"}/>
   );
 }
