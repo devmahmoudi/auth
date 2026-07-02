@@ -1,3 +1,4 @@
+import type { AuthenticatedUser } from "../types/AuthenticatedUser";
 import type { SignInResult } from "../types/SignInResult";
 
 export interface AuthAdapter {
@@ -7,4 +8,5 @@ export interface AuthAdapter {
   resetPassword(email: string): Promise<void>;
   getSession(): Promise<any | null>;
   onAuthStateChange(callback: (session: any | null) => void): () => void;
+  getUser(): Promise<AuthenticatedUser | null>;
 }

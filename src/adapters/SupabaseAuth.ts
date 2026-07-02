@@ -1,6 +1,7 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import type { AuthAdapter } from "../contracts/AuthAdapter";
 import type { SignInResult } from "../types/SignInResult";
+import type { AuthenticatedUser } from "../types/AuthenticatedUser";
 
 export default class SupabaseAuth implements AuthAdapter {
   private client: SupabaseClient;
@@ -20,6 +21,25 @@ export default class SupabaseAuth implements AuthAdapter {
         },
       },
     });
+  }
+
+  async getUser(): Promise<AuthenticatedUser | null> {
+    const {
+      data: { user },
+      error,
+    } = await this.client.auth.getUser();
+
+    if (error) 
+      return null;
+
+    if (!user) {
+      return null;
+    }
+
+    return {
+      id: user.id,
+      email: user.email ?? "",
+    };
   }
 
   async signIn(credentials: {

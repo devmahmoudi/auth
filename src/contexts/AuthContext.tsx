@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
 import type { AuthAdapter } from "../contracts/AuthAdapter";
 import type { SignInResult } from "../types/SignInResult";
+import type { AuthenticatedUser } from "../types/AuthenticatedUser";
 
 type AuthContextType = {
   session: any | null;
@@ -9,6 +10,7 @@ type AuthContextType = {
   signUp: (data: any) => Promise<any>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  getUser: () => Promise<AuthenticatedUser | null>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -56,6 +58,10 @@ export function AuthProvider({ children, adapter }: AuthProviderProps) {
     await adapter.resetPassword(email);
   };
 
+  const getUser = async () => {
+    return await adapter.getUser()
+  }
+
   const value = {
     session,
     isLoading,
@@ -63,6 +69,7 @@ export function AuthProvider({ children, adapter }: AuthProviderProps) {
     signUp,
     signOut,
     resetPassword,
+    getUser
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
