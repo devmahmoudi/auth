@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import RegisterForm from "../../components/register-form";
 import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
+import { AuthShell } from "../../components/auth-shell";
 
 export default function Register() {
   const { signUp } = useAuth();
@@ -30,7 +31,7 @@ export default function Register() {
         password: data.password,
       });
       navigate("/auth", {
-        state: { message: "Registration successful! Please check your email." }
+        state: { message: "Registration successful! Please check your email." },
       });
     } catch (err: any) {
       setError(err.message || "Registration failed");
@@ -40,6 +41,13 @@ export default function Register() {
   };
 
   return (
-    <RegisterForm onSubmit={handleOnSubmit} error={error} pending={submitting} loginLink="/auth/login"/>
+    <AuthShell>
+      <RegisterForm
+        onSubmit={handleOnSubmit}
+        error={error}
+        pending={submitting}
+        loginLink="/auth/login"
+      />
+    </AuthShell>
   );
 }
