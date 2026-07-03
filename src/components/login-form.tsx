@@ -4,7 +4,7 @@ import { Button } from "@devmahmoudi/ui";
 import { useState } from "react";
 import { Link } from "react-router";
 
-type LoginFormProps = {
+export type LoginFormProps = {
   title?: string;
   subtitle?: string;
   onSubmit?: (credentials: { email: string; password: string }) => void;

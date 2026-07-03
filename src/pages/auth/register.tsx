@@ -1,10 +1,16 @@
 import { useNavigate } from "react-router";
-import RegisterForm from "../../components/register-form";
+import RegisterForm, {
+  type RegisterFormProps,
+} from "../../components/register-form";
 import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import { AuthShell } from "../../components/auth-shell";
 
-export default function Register() {
+interface RegisterProps {
+  loginLink?: RegisterFormProps["loginLink"];
+}
+
+export default function Register({ loginLink }: RegisterProps) {
   const { signUp } = useAuth();
   const navigate = useNavigate();
 
@@ -46,7 +52,7 @@ export default function Register() {
         onSubmit={handleOnSubmit}
         error={error}
         pending={submitting}
-        loginLink="/auth/login"
+        loginLink={loginLink}
       />
     </AuthShell>
   );

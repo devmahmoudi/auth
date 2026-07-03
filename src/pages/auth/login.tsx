@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router";
-import LoginForm from "../../components/login-form";
+import LoginForm, { type LoginFormProps } from "../../components/login-form";
 import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import type { SignInResult } from "../../types/SignInResult";
 import { AuthShell } from "../../components/auth-shell";
 
-export default function Login() {
+interface LoginProps {
+  registerLink?: LoginFormProps["registerLink"];
+}
+
+export default function Login({ registerLink }: LoginProps) {
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
@@ -31,7 +35,7 @@ export default function Login() {
         onSubmit={handleOnSubmit}
         error={error}
         pending={submitting}
-        registerLink={"/auth/register"}
+        registerLink={registerLink}
       />
     </AuthShell>
   );

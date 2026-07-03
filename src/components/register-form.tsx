@@ -4,7 +4,7 @@ import { Button } from "@devmahmoudi/ui";
 import { useState } from "react";
 import { Link } from "react-router";
 
-type RegisterFormProps = {
+export type RegisterFormProps = {
   title?: string;
   subtitle?: string;
   onSubmit?: (data: { email: string; password: string; confirmPassword: string }) => void;
