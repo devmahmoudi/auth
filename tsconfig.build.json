@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+
+    "paths": {
+      "@/*": ["./*"]
+    },
+
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+
+    "jsx": "react-jsx",
+
+    "strict": true,
+
+    "declaration": true,
+    "declarationDir": "./dist",
+    "outDir": "./dist",
+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+
+  "include": [
+    "src"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/*.stories.tsx",
+    "**/__tests__/**",
+    "src/App.tsx",
+    "src/main.tsx",
+    "src/assets",
+    "src/router.tsx",
+    "src/fonts",
+    "types/SignInResult.ts",
+  ]
+}
