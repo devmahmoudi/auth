@@ -38,9 +38,9 @@ export default function LoginForm({
   };
 
   return (
-    <div dir="rtl" className="space-y-5 p-4">
+    <div className="space-y-5 p-4">
       <div className="text-center">
-        <h2 className="text-lg font-semibold">{title ?? "ورود"}</h2>
+        <h2 className="text-lg font-semibold">{title ?? "Login"}</h2>
         <p className="text-sm text-gray-600">{subtitle}</p>
       </div>
 
@@ -52,7 +52,7 @@ export default function LoginForm({
         )}
 
         <div>
-          <Label>ایمیل</Label>
+          <Label>Email</Label>
           <Input
             type="email"
             placeholder="example@email.com"
@@ -62,7 +62,7 @@ export default function LoginForm({
         </div>
 
         <div>
-          <Label>رمز عبور</Label>
+          <Label>Password</Label>
           <Input
             type="password"
             placeholder="••••••••"
@@ -81,7 +81,7 @@ export default function LoginForm({
             })
           }
         >
-          {pending ? <Spinner/> : "ورود"}
+          {pending ? <Spinner /> : "Login"}
         </Button>
       </form>
 
@@ -91,7 +91,7 @@ export default function LoginForm({
             to={registerLink}
             className="text-blue-600 hover:text-blue-800 hover:underline"
           >
-            حساب کاربری ندارید؟ ثبت نام کنید
+            Don't have an account? Register.
           </Link>
         </div>
       )}

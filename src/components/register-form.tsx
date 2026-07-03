@@ -41,9 +41,9 @@ export default function RegisterForm({
   };
 
   return (
-    <div dir="rtl" className="space-y-5 p-4">
+    <div className="space-y-5 p-4">
       <div className="text-center">
-        <h2 className="text-lg font-semibold">{title ?? "ثبت نام"}</h2>
+        <h2 className="text-lg font-semibold">{title ?? "Sign Up"}</h2>
         <p className="text-sm text-gray-600">{subtitle}</p>
       </div>
 
@@ -55,7 +55,7 @@ export default function RegisterForm({
         )}
 
         <div>
-          <Label>ایمیل</Label>
+          <Label>Email</Label>
           <Input
             type="email"
             placeholder="example@email.com"
@@ -65,7 +65,7 @@ export default function RegisterForm({
         </div>
 
         <div>
-          <Label>رمز عبور</Label>
+          <Label>Password</Label>
           <Input
             type="password"
             placeholder="••••••••"
@@ -75,7 +75,7 @@ export default function RegisterForm({
         </div>
 
         <div>
-          <Label>تکرار رمز عبور</Label>
+          <Label>Confirm Password</Label>
           <Input
             type="password"
             placeholder="••••••••"
@@ -95,7 +95,7 @@ export default function RegisterForm({
             })
           }
         >
-          {pending ? <Spinner /> : "ثبت نام"}
+          {pending ? <Spinner /> : "Sign Up"}
         </Button>
       </form>
 
@@ -105,7 +105,7 @@ export default function RegisterForm({
             to={loginLink}
             className="text-blue-600 hover:text-blue-800 hover:underline"
           >
-            قبلاً ثبت نام کرده‌اید؟ وارد شوید
+            Already have an account? Sign In
           </Link>
         </div>
       )}

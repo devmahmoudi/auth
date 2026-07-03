@@ -9,8 +9,8 @@ export function AppRoutes() {
     <Routes>
       <Route path="/auth">
         <Route index element={<Navigate to={"/auth/login"}/>} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login registerLink="/auth/register"/>} />
+        <Route path="register" element={<Register loginLink="/auth/login"/>} />
       </Route>
       <Route path="/" element={<ProtectedLayout/>}>
         <Route index element={<Home/>}/>
