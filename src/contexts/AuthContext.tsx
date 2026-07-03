@@ -6,6 +6,7 @@ import type { AuthenticatedUser } from "../types/AuthenticatedUser";
 type AuthContextType = {
   session: any | null;
   isLoading: boolean;
+  user: AuthenticatedUser | undefined;
   signIn: (credentials: any) => Promise<SignInResult>;
   signUp: (data: any) => Promise<any>;
   signOut: () => Promise<void>;
@@ -22,6 +23,7 @@ type AuthProviderProps = {
 
 export function AuthProvider({ children, adapter }: AuthProviderProps) {
   const [session, setSession] = useState<any | null>(null);
+  const [user, setUser] = useState<AuthenticatedUser | undefined>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -39,6 +41,11 @@ export function AuthProvider({ children, adapter }: AuthProviderProps) {
       unsubscribe();
     };
   }, [adapter]);
+
+  useEffect(() => {
+    if(session)
+      getUser().then((user) => setUser(user ?? undefined))
+  }, [session])
 
   const signIn = async (credentials: any) => {
     const data = await adapter.signIn(credentials);
@@ -65,6 +72,7 @@ export function AuthProvider({ children, adapter }: AuthProviderProps) {
   const value = {
     session,
     isLoading,
+    user,
     signIn,
     signUp,
     signOut,
