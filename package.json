@@ -30,6 +30,7 @@
   "dependencies": {
     "@devmahmoudi/ui": "workspace:*",
     "@devmahmoudi/core": "workspace:*",
+    "@devmahmoudi/user-management": "workspace:*",
     "@supabase/supabase-js": "^2.110.0",
     "@tailwindcss/vite": "^4.3.1",
     "concurrently": "^10.0.3",

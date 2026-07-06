@@ -2,8 +2,7 @@ import { createContext, useContext, useState, useEffect, type ReactNode } from "
 import type { AuthAdapter } from "../contracts/AuthAdapter";
 import type { SignInResult } from "../types/SignInResult";
 import type { AuthenticatedUser } from "../types/AuthenticatedUser";
-import { useAppBuilder } from "@devmahmoudi/core";
-import { SharedAuthServiceToken } from "../contracts/SharedAuthService";
+import { useAdapter } from "../hooks/useAdapter";
 
 type AuthContextType = {
   session: any | null;
@@ -27,10 +26,10 @@ export function AuthProvider({ children, adapter }: AuthProviderProps) {
   const [session, setSession] = useState<any | null>(null);
   const [user, setUser] = useState<AuthenticatedUser | undefined>();
   const [isLoading, setIsLoading] = useState(true);
-  const authAdapter: AuthAdapter = adapter ?? useAppBuilder().getShared(SharedAuthServiceToken)
+  const authAdapter: AuthAdapter|undefined = useAdapter() ?? adapter;
 
   if(!authAdapter)
-    throw new Error("AuthAdapter should be passed through either the AuthProvider argument or AppProvider with UserPlugin")
+    throw new Error("AuthAdapter should be passed through either the AuthProvider argument or AppProvider with AuthPlugin")
 
   useEffect(() => {
     authAdapter.getSession().then((initialSession) => {
