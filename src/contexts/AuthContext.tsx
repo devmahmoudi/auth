@@ -2,6 +2,8 @@ import { createContext, useContext, useState, useEffect, type ReactNode } from "
 import type { AuthAdapter } from "../contracts/AuthAdapter";
 import type { SignInResult } from "../types/SignInResult";
 import type { AuthenticatedUser } from "../types/AuthenticatedUser";
+import { useAppBuilder } from "@devmahmoudi/core";
+import { SharedAuthServiceToken } from "../contracts/SharedAuthService";
 
 type AuthContextType = {
   session: any | null;
@@ -18,21 +20,25 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 type AuthProviderProps = {
   children: ReactNode;
-  adapter: AuthAdapter;
+  adapter?: AuthAdapter;
 };
 
 export function AuthProvider({ children, adapter }: AuthProviderProps) {
   const [session, setSession] = useState<any | null>(null);
   const [user, setUser] = useState<AuthenticatedUser | undefined>();
   const [isLoading, setIsLoading] = useState(true);
+  const authAdapter: AuthAdapter = adapter ?? useAppBuilder().getShared(SharedAuthServiceToken)
+
+  if(!authAdapter)
+    throw new Error("AuthAdapter should be passed through either the AuthProvider argument or AppProvider with UserPlugin")
 
   useEffect(() => {
-    adapter.getSession().then((initialSession) => {
+    authAdapter.getSession().then((initialSession) => {
       setSession(initialSession);
       setIsLoading(false);
     });
 
-    const unsubscribe = adapter.onAuthStateChange((newSession) => {
+    const unsubscribe = authAdapter.onAuthStateChange((newSession) => {
       setSession(newSession);
       setIsLoading(false);
     });
@@ -40,7 +46,7 @@ export function AuthProvider({ children, adapter }: AuthProviderProps) {
     return () => {
       unsubscribe();
     };
-  }, [adapter]);
+  }, [authAdapter]);
 
   useEffect(() => {
     if(session)
@@ -48,25 +54,25 @@ export function AuthProvider({ children, adapter }: AuthProviderProps) {
   }, [session])
 
   const signIn = async (credentials: any) => {
-    const data = await adapter.signIn(credentials);
+    const data = await authAdapter.signIn(credentials);
     return data;
   };
 
   const signUp = async (data: any) => {
-    const result = await adapter.signUp(data);
+    const result = await authAdapter.signUp(data);
     return result;
   };
 
   const signOut = async () => {
-    await adapter.signOut();
+    await authAdapter.signOut();
   };
 
   const resetPassword = async (email: string) => {
-    await adapter.resetPassword(email);
+    await authAdapter.resetPassword(email);
   };
 
   const getUser = async () => {
-    return await adapter.getUser()
+    return await authAdapter.getUser()
   }
 
   const value = {

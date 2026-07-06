@@ -9,4 +9,5 @@ export interface AuthAdapter {
   getSession(): Promise<any | null>;
   onAuthStateChange(callback: (session: any | null) => void): () => void;
   getUser(): Promise<AuthenticatedUser | null>;
+  deleteAccount(email: string): Promise<boolean>;
 }

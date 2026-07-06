@@ -109,4 +109,8 @@ export default class SupabaseAuth implements AuthAdapter {
       subscription.unsubscribe();
     };
   }
+
+  async deleteAccount(email: string): Promise<boolean> {
+    return true;
+  }
 }
