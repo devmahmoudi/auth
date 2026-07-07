@@ -1,6 +1,8 @@
 import type { AuthenticatedUser } from "../types/AuthenticatedUser";
 import type { SignInResult } from "../types/SignInResult";
 
+export const AuthAdapterToken = Symbol("AuthAdapter")
+
 export interface AuthAdapter {
   signIn(credentials: any): Promise<SignInResult>;
   signUp(data: any): Promise<any>;

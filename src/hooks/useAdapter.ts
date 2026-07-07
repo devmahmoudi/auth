@@ -1,7 +1,6 @@
 import { AppBuilder, useAppBuilder } from "@devmahmoudi/core";
-import type { AuthAdapter } from "../contracts/AuthAdapter";
+import { AuthAdapterToken, type AuthAdapter } from "../contracts/AuthAdapter";
 import { SharedUserManagementServiceToken } from "../../../user-management/dist";
-import { SharedAuthServiceToken } from "../contracts/SharedAuthService";
 import { AuthUserManagementDecorator } from "../decorators/AuthUserManagementDecorator";
 import { useMemo } from "react";
 
@@ -10,7 +9,7 @@ export function useAdapter(): AuthAdapter | undefined {
 
   if (!appBuilder) return;
 
-  const authAdapter = appBuilder.getShared(SharedAuthServiceToken);
+  const authAdapter = appBuilder.resolveInstance<AuthAdapter>(AuthAdapterToken);
   const userManagementService = appBuilder.getShared(
     SharedUserManagementServiceToken,
   );
