@@ -11,7 +11,7 @@ createRoot(document.getElementById("root")!).render(
     <AuthProvider
       adapter={
         new SupabaseAuth(
-          "https://khesarat.satia.co:1011",
+          "http://localhost:8000",
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzcwMTE3Njk5LCJleHAiOjE5Mjc3OTc2OTl9.gO08ZgndhU6UkiUUXy2FYde1_0O0-LCom6uUxq2tSls",
         )
       }

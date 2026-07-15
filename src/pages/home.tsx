@@ -2,7 +2,7 @@ import { Button, Spinner } from "@devmahmoudi/ui";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { type AuthenticatedUser } from "../types/AuthenticatedUser";
+import type { AuthenticatedUser } from "@devmahmoudi/contracts/types";
 
 export default function Home() {
   const { signOut, getUser } = useAuth();

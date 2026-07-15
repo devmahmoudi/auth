@@ -1,8 +1,8 @@
 import { AppBuilder, useAppBuilder } from "@devmahmoudi/core";
-import { AuthAdapterToken, type AuthAdapter } from "../contracts/AuthAdapter";
 import { SharedUserManagementServiceToken } from "../../../user-management/dist";
 import { AuthUserManagementDecorator } from "../decorators/AuthUserManagementDecorator";
 import { useMemo } from "react";
+import { AuthAdapterToken, type AuthAdapter } from "@devmahmoudi/contracts/interfaces";
 
 export function useAdapter(): AuthAdapter | undefined {
   const appBuilder = getAppBuilder();

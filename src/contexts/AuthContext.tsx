@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
-import type { AuthAdapter } from "../contracts/AuthAdapter";
-import type { SignInResult } from "../types/SignInResult";
-import type { AuthenticatedUser } from "../types/AuthenticatedUser";
 import { useAdapter } from "../hooks/useAdapter";
+import type { AuthenticatedUser, SignInResult } from "@devmahmoudi/contracts/types";
+import type { AuthAdapter } from "@devmahmoudi/contracts/interfaces";
 
 type AuthContextType = {
   session: any | null;

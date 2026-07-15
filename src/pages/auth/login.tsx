@@ -2,8 +2,8 @@ import { useNavigate } from "react-router";
 import LoginForm, { type LoginFormProps } from "../../components/login-form";
 import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
-import type { SignInResult } from "../../types/SignInResult";
 import { AuthShell } from "../../components/auth-shell";
+import type { SignInResult } from "@devmahmoudi/contracts/types";
 
 interface LoginProps {
   registerLink?: LoginFormProps["registerLink"];

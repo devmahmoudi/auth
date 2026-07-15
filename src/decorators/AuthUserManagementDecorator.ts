@@ -1,9 +1,8 @@
+import type { AuthAdapter } from "@devmahmoudi/contracts/interfaces";
+import type { AuthenticatedUser, SignInResult } from "@devmahmoudi/contracts/types";
 import {
   type SharedUserManagementService,
 } from "@devmahmoudi/user-management";
-import type { AuthAdapter } from "../contracts/AuthAdapter";
-import type { AuthenticatedUser } from "../types/AuthenticatedUser";
-import type { SignInResult } from "../types/SignInResult";
 
 export class AuthUserManagementDecorator implements AuthAdapter {
   private adapter;

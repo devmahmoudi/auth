@@ -1,7 +1,6 @@
+import type { AuthAdapter } from "@devmahmoudi/contracts/interfaces";
+import type { AuthenticatedUser, SignInResult } from "@devmahmoudi/contracts/types";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import type { AuthAdapter } from "../contracts/AuthAdapter";
-import type { SignInResult } from "../types/SignInResult";
-import type { AuthenticatedUser } from "../types/AuthenticatedUser";
 
 export default class SupabaseAuth implements AuthAdapter {
   private client: SupabaseClient;

@@ -1,6 +1,5 @@
+import { AuthAdapterToken, SharedAuthServiceToken, type AuthAdapter } from "@devmahmoudi/contracts/interfaces";
 import type { AppBuilder, Plugin } from "@devmahmoudi/core";
-import { SharedAuthServiceToken } from "../contracts/SharedAuthService";
-import { AuthAdapterToken, type AuthAdapter } from "../contracts/AuthAdapter";
 
 export class AuthPlugin implements Plugin {
   id: string = "auth-plugin";
