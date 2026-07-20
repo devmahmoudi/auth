@@ -1,5 +1,4 @@
-import { AuthAdapterToken, SharedAuthServiceToken, type AuthAdapter } from "@devmahmoudi/contracts/interfaces";
-import type { AppBuilder, Plugin } from "@devmahmoudi/core";
+import { AuthAdapterToken, SharedAuthServiceToken, type AuthAdapter, type Plugin, type IAppBuilder } from "@devmahmoudi/contracts/interfaces";
 
 export class AuthPlugin implements Plugin {
   id: string = "auth-plugin";
@@ -10,16 +9,16 @@ export class AuthPlugin implements Plugin {
     this.adapter = adapter;
   }
 
-  setup(builder: AppBuilder): void | Promise<void> {
+  setup(builder: IAppBuilder): void | Promise<void> {
     builder.setShared(SharedAuthServiceToken, this.adapter);
 
     builder.registerInstance(AuthAdapterToken, this.adapter);
   }
 
-  beforeRegister?(builder: AppBuilder): void {
+  beforeRegister?(builder: IAppBuilder): void {
     return;
   }
-  afterRegister?(builder: AppBuilder): void {
+  afterRegister?(builder: IAppBuilder): void {
     return;
   }
 }
